@@ -1,0 +1,31 @@
+<div class="p-fluid" formGroup="login">
+  <div class="p-field">
+    <label for="user_name">User Name</label>
+    <input id="user_name" formControlName="user_name" type="text" pInputText />
+  </div>
+  <div class="p-field">
+    <label for="password">Password</label>
+    <input id="password" formControlName="password" type="password" pInputText />
+  </div>
+  <div class="p-formgroup-inline">
+    <div class="p-field-checkbox">
+      <p-radioButton
+        name="candidate"
+        value="candidate"
+        formControlName="user_type"
+        inputId="candidate"
+      ></p-radioButton>
+      <label for="candidate">Candidate</label>
+    </div>
+    <div class="p-field-checkbox">
+      <p-radioButton
+        name="company"
+        value="company"
+        formControlName="user_type"
+        inputId="company"
+      ></p-radioButton>
+      <label for="company">Company</label>
+    </div>
+  </div>
+  <button pButton type="button" label="Proceed"></button>
+</div>
