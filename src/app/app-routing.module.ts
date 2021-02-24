@@ -1,25 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
   {
-    path: "/login",
+    path: "login",
     component: LoginComponent,
   },
   {
-    path: "/register",
-    component: LoginComponent,
+    path: "register",
+    component: RegisterComponent,
   },
   {
-    path: "*",
-    redirectTo: "LoginComponent",
-  },
+    path: "",
+    redirectTo: "login",
+    pathMatch: "full"
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

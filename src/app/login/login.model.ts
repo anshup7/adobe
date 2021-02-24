@@ -3,6 +3,16 @@ export interface Login {
   password: string;
   user_type: string;
 }
+
+export interface LoginResponse {
+  status: boolean;
+  message: string;
+  name?: string;
+  user_type?: string;
+  password?: string;
+  user_name?: string;
+  associate_company?: string;
+}
 export class LoginModel {
   private userName: string;
   private password: string;

@@ -1,1 +1,4 @@
+<div *ngIf="dialog.status">
+  <p-dialog [header]="dialog.title" styleClass="dialog" position="top-right" rtl="true" [(visible)]="dialog.status">{{dialog.content}}</p-dialog>
+</div>
 <router-outlet></router-outlet>

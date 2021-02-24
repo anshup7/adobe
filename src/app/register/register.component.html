@@ -1,1 +1,42 @@
-<p>register works!</p>
+<div class="p-d-flex p-fluid p-jc-center p-mt-6">
+  <form [formGroup]="registerFg">
+    <div class="p-field">
+      <label for="name">{{nameLabelText | async}}</label>
+      <input id="name" formControlName="name" type="text" pInputText />
+    </div>
+    <div class="p-field">
+      <label for="user_name">User Name</label>
+      <input id="user_name" formControlName="user_name" type="text" pInputText />
+    </div>
+    <div class="p-field">
+      <label for="password">Password</label>
+      <input id="password" formControlName="password" type="password" pInputText />
+    </div>
+    <div *ngIf="showAC | async" class="p-field">
+      <label for="associated_company">Associated Company Name</label>
+      <input id="associated_company" formControlName="associated_company" type="text" pInputText />
+    </div>
+    <div class="p-formgroup-inline">
+      <div class="p-field-checkbox">
+        <p-radioButton
+          name="user_type"
+          value="candidate"
+          inputId="candidate"
+          formControlName="user_type"
+        ></p-radioButton>
+        <label for="candidate">Candidate</label>
+      </div>
+      <div class="p-field-checkbox">
+        <p-radioButton
+          name="user_type"
+          value="company"
+          inputId="company"
+          formControlName="user_type"
+        ></p-radioButton>
+        <label for="company">Company</label>
+      </div>
+    </div>
+    <button [disabled]="registerFg.invalid" (click)="onSubmit()" pButton type="button" class="p-button-raised" label="Submit" icon="pi pi-check" iconPos="left"></button>
+
+  </form>
+</div>
