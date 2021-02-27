@@ -1,4 +1,8 @@
 <div *ngIf="dialog.status">
   <p-dialog [header]="dialog.title" styleClass="dialog" position="top-right" rtl="true" [(visible)]="dialog.status">{{dialog.content}}</p-dialog>
 </div>
+<div *ngIf="globalTask.loggedIn | async" class="p-d-flex p-d-row p-jc-end">
+      <button pButton (click)="logout()" type="button" class="p-mb-5 p-button-raised" icon="pi pi-lock" label="Logout"></button>
+</div>
+
 <router-outlet></router-outlet>

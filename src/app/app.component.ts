@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DummyDbService } from './dummy-db.service';
 import { Dialog, GlobalTaskService } from './global-task.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { Dialog, GlobalTaskService } from './global-task.service';
 })
 export class AppComponent implements OnInit {
   title = "HRSP(adobe)";
-  constructor(private globalTask: GlobalTaskService) {}
+  constructor(public globalTask: GlobalTaskService, private dummyDb: DummyDbService) {}
   dialog = {
     status: false,
     title: "",
@@ -18,5 +19,8 @@ export class AppComponent implements OnInit {
     this.globalTask.dialogSubscription.subscribe((res: Dialog) => {
       this.dialog = res;
     });
+  }
+  logout() {
+    this.dummyDb.logout();
   }
 }

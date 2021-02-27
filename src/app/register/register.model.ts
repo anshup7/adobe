@@ -1,3 +1,5 @@
+import { AbstractControl, ValidatorFn } from "@angular/forms";
+
 export interface Register {
   name: string;
   user_name: string;
@@ -21,7 +23,7 @@ export class RegisterModel {
   private userName: string;
   private password: string;
   private userType: string;
-  private associatedComapany: string;
+  private associatedCompany: string;
 
   get values() {
     return {
@@ -29,7 +31,7 @@ export class RegisterModel {
         user_name: this.userName,
         password: this.password,
         user_type: this.userType,
-        associated_company: this.associatedComapany
+        associated_company: this.associatedCompany
       }
 
   }
@@ -39,7 +41,7 @@ export class RegisterModel {
     this.userName = obj.user_name,
     this.password = obj.password,
     this.userType = obj.user_type
-    this.associatedComapany = obj.associated_company
+    this.associatedCompany = obj.associated_company
   }
 
 }

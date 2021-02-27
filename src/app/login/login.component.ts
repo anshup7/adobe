@@ -46,6 +46,8 @@ export class LoginComponent implements OnInit {
           content: res.message,
           title: "Login Unsuccessful"
         })
+      } else {
+        this.router.navigate(["/dashboard"]);
       }
     })
   }

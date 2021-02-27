@@ -57,6 +57,12 @@
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
+// for the support of window.AdobeDc
+declare global {
+  interface Window {
+    AdobeDC: any;
+  }
+}
 
 /***************************************************************************************************
  * APPLICATION IMPORTS

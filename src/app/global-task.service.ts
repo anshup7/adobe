@@ -10,6 +10,7 @@ export interface Dialog {
 })
 
 export class GlobalTaskService {
+  loggedIn = new BehaviorSubject<boolean>(false);
   constructor() {}
   private dialog = new BehaviorSubject<Dialog>({
     status: false,

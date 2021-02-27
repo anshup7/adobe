@@ -12,6 +12,11 @@
       <label for="password">Password</label>
       <input id="password" formControlName="password" type="password" pInputText />
     </div>
+    <div  class="p-field">
+      <label for="confirm_password">Confirm Password</label>
+      <input id="confirm_password" aria-describedby="confirm-password-help" [ngClass]="{'ng-invalid': passwordMismatch, 'ng-dirty': passwordMismatch}" formControlName="confirm_password" type="password" pInputText />
+      <small *ngIf="passwordMismatch | async" id="confirm-password-help" class="p-error">Passwords do not match</small>
+    </div>
     <div *ngIf="showAC | async" class="p-field">
       <label for="associated_company">Associated Company Name</label>
       <input id="associated_company" formControlName="associated_company" type="text" pInputText />

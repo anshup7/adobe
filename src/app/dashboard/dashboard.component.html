@@ -1,0 +1,36 @@
+<p-panel
+  *ngIf="currentUser && currentUser.user_type === 'candidate'"
+  header="Welcome {{ currentUser.name }}"
+  class="p-jc-center"
+>
+
+</p-panel>
+
+<p-panel
+  *ngIf="currentUser && currentUser.user_type === 'company'"
+  header="Welcome {{ currentUser.name }}"
+  class="p-jc-center"
+>
+  <p-messages
+    *ngIf="candidateModels && candidateModels.length > 0"
+    severity="info"
+  >
+    <ng-template pTemplate>
+      <div class="p-ml-2">Please select users you want to create document</div>
+    </ng-template>
+  </p-messages>
+  <div *ngFor="let candidate of candidateModels" class="p-formgroup-inline">
+    <div class="p-field-checkbox">
+      <p-checkbox
+        name="candidate"
+        [value]="candidate.user_name"
+        [(ngModel)]="documentModel.users"
+        [label]="candidate.name"
+      ></p-checkbox>
+    </div>
+  </div>
+
+  <div class="p-d-flex p-d-column p-mt-3">
+    <button [disabled]="documentModel.users.length === 0" pButton (click)="createPdf()" type="button" class="p-mb-5 p-button-raised" icon="pi pi-pen" label="Proceed to create Document"></button>
+  </div>
+</p-panel>
