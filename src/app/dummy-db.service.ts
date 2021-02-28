@@ -157,6 +157,29 @@ export class DummyDbService {
     return this.http.post(`${environment.api}/api/pdf/create`, sendingData);
   }
 
+  private findCompanyUserName(companyName: string) {
+    let keys = Object.keys(this.data.user);
+      for (let key of keys) {
+        if ((this.data.user[key].name).toLowerCase() === companyName) {
+          console.log("returning key", key);
+          return [key, this.data.user[key].name];
+        }
+      }
+  }
+
+  getPdf(user: {type: string, user_name: string}): Observable<any> {
+    if (user.type === "company") {
+      return of(this.data.pdf[user.user_name]); //for_users: {user_name: {}, user_name:{}} or undefined
+    } else if (user.type === "candidate") {
+      let associatedCompany = this.data.user[user.user_name].associated_company;
+      let [companyUserName, companyName] = this.findCompanyUserName(associatedCompany.toLowerCase());
+      if (!this.data.pdf[companyUserName]) {
+        return throwError({message: `No Pdf was added by your company ${companyName}`});
+      }
+        return of(this.data.pdf[companyUserName].for_users[user.user_name]); // undefined or {url: ""}
+    }
+  }
+
   syncPdf(data: PdfCreateResponse[]) {
     this.syncData();
     for (let eachPdf of data) {

@@ -32,6 +32,8 @@ export class ViewSDKClient {
     }
 
     previewFile(divId: string, viewerConfig: any) {
+      let url = viewerConfig.url;
+      delete viewerConfig.url;
         const config: any = {
           /* Pass your registered client id */
           clientId: "3345584c3af44956827df51097c1dc1f",
@@ -44,13 +46,14 @@ export class ViewSDKClient {
         this.adobeDCView = new window.AdobeDC.View(config);
 
         /* Invoke the file preview API on Adobe DC View object */
-        const previewFilePromise = this.adobeDCView.previewFile({
+        const previewFilePromise = this.adobeDCView.previewFile(
+          {
             /* Pass information on how to access the file */
             content: {
-                /* Location of file where it is hosted */
-                location: {
-                    url: 'https://documentcloud.adobe.com/view-sdk-demo/PDFs/Bodea Brochure.pdf',
-                    /*
+              /* Location of file where it is hosted */
+              location: {
+                url: `https://documentcloud.adobe.com/view-sdk-demo/PDFs/Bodea Brochure.pdf`,
+                /*
                     If the file URL requires some additional headers, then it can be passed as follows:-
                     headers: [
                         {
@@ -59,16 +62,18 @@ export class ViewSDKClient {
                         }
                     ]
                     */
-                },
+              },
             },
             /* Pass meta data of file */
             metaData: {
-                /* file name */
-                fileName: 'Bodea Brochure.pdf',
-                /* file ID */
-                id: '6d07d124-ac85-43b3-a867-36930f502ac6',
-            }
-        }, viewerConfig);
+              /* file name */
+              fileName: viewerConfig.document_name,
+              /* file ID */
+              id: `${Math.floor((Math.random() * 100) + 1)}`,
+            },
+          },
+          viewerConfig
+        );
 
         return previewFilePromise;
     }
@@ -120,6 +125,20 @@ export class ViewSDKClient {
             saveApiHandler,
             {}
         );
+    }
+
+    enableCollaborativeSettings(profile) {
+      this.adobeDCView.registerCallback(
+        window.AdobeDC.View.Enum.CallbackType.GET_USER_PROFILE_API,
+        function () {
+          return new Promise((resolve, reject) => {
+            resolve({
+              code: window.AdobeDC.View.Enum.ApiResponseCode.SUCCESS,
+              data: profile,
+            });
+          });
+        }
+      );
     }
 
     registerEventsHandler() {

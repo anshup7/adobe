@@ -4,6 +4,11 @@
   class="p-jc-center"
 >
 
+<div id="pdf-{{currentUser.user_name}}" class="pdf-flex p-d-row p-ml-2 p-mb-2 style" >
+
+</div>
+
+
 </p-panel>
 
 <p-panel
@@ -32,5 +37,9 @@
 
   <div class="p-d-flex p-d-column p-mt-3">
     <button [disabled]="documentModel.users.length === 0" pButton (click)="createPdf()" type="button" class="p-mb-5 p-button-raised" icon="pi pi-pen" label="Proceed to create Document"></button>
+  </div>
+
+  <div *ngFor="let user_name of userNames" id="pdf-{{user_name}}" class="pdf-flex p-d-row p-ml-2 p-mb-2 style" >
+
   </div>
 </p-panel>
